@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battery AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>🔋 Battery AI</h1>
+
+    <h2>Niveau : {{ niveau }}%</h2>
+
+    <div class="bar">
+        <div class="progress" style="width: {{ niveau }}%;">
+            {{ niveau }}%
+        </div>
+    </div>
+
+    <div class="info">
+
+        <p><strong>Etat :</strong> {{ status }}</p>
+
+        <p>🌡 Température : {{ temperature }} °C</p>
+
+        <p>❤️ Santé : {{ health }}</p>
+
+        <p>⚡ Voltage : {{ voltage }}</p>
+
+        <p>📱 Technologie : {{ technology }}</p>
+
+        <p>🕒 Heure : {{ heure }}</p>
+
+        <p class="conseil">
+            {{ conseil }}
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>

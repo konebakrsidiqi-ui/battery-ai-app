@@ -1,0 +1,54 @@
+body{
+    background:black;
+    color:white;
+    font-family:Arial;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+
+.card{
+    background:#111;
+    padding:25px;
+    border-radius:20px;
+    width:320px;
+    box-shadow:0 0 20px rgba(255,140,0,0.3);
+}
+
+h1{
+    color:orange;
+    text-align:center;
+}
+
+h2{
+    text-align:center;
+}
+
+.bar{
+    background:#333;
+    border-radius:20px;
+    overflow:hidden;
+    height:25px;
+    margin-bottom:20px;
+}
+
+.progress{
+    background:linear-gradient(to right, orange, red);
+    height:100%;
+    text-align:center;
+    line-height:25px;
+    font-weight:bold;
+}
+
+.info p{
+    margin:10px 0;
+}
+
+.conseil{
+    color:orange;
+    font-weight:bold;
+    text-align:center;
+    margin-top:20px;
+}
