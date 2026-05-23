@@ -1,3 +1,4 @@
+cat > .github/workflows/android.yml << 'EOF'
 name: Android Build
 
 on:
@@ -49,3 +50,4 @@ jobs:
         with:
           name: apk
           path: bin/*.apk
+EOF
