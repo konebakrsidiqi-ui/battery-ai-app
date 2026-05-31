@@ -29,25 +29,25 @@ jobs:
   run: |
   wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
   
-  mkdir -p $HOME/android-sdk/cmdline-tools
-  unzip -q commandlinetools-linux-11076708_latest.zip -d $HOME/android-sdk/cmdline-tools
-  
-  mv $HOME/android-sdk/cmdline-tools/cmdline-tools 
-  $HOME/android-sdk/cmdline-tools/latest
-  
-  echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
-  echo "$HOME/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
-  echo "$HOME/android-sdk/platform-tools" >> $GITHUB_PATH
-  
-  export ANDROID_HOME=$HOME/android-sdk
-  export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-  
-  yes | sdkmanager --licenses
-  
-  sdkmanager 
-  "platform-tools" 
-  "platforms;android-33" 
-  "build-tools;33.0.2"
+      mkdir -p $HOME/android-sdk/cmdline-tools
+    unzip -q commandlinetools-linux-11076708_latest.zip -d $HOME/android-sdk/cmdline-tools
+
+    mv $HOME/android-sdk/cmdline-tools/cmdline-tools \
+       $HOME/android-sdk/cmdline-tools/latest
+
+    echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
+    echo "$HOME/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
+    echo "$HOME/android-sdk/platform-tools" >> $GITHUB_PATH
+
+    export ANDROID_HOME=$HOME/android-sdk
+    export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+
+    yes | sdkmanager --licenses
+
+    sdkmanager \
+      "platform-tools" \
+      "platforms;android-33" \
+      "build-tools;33.0.2"
 
       - name: Build APK
         run: |
