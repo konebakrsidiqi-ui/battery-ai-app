@@ -126,7 +126,7 @@ android.ndk_api = 21
 android.build_tools_version = 33.0.2
 
 android.accept_sdk_license = True
-p4a.branch = master
+# p4a.branch = master
 
 # (str) Android NDK directory (if empty, it will be automatically downloaded.)
 #android.ndk_path =
