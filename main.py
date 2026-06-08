@@ -9,18 +9,12 @@ app = Flask(__name__)
 def home():
 
     try:
-        battery = subprocess.check_output(
-            ["termux-battery-status"]
-        ).decode("utf-8")
-
-        data = json.loads(battery)
-
-        niveau = data.get("percentage")
-        temperature = data.get("temperature")
-        status = data.get("status")
-        health = data.get("health")
-        voltage = data.get("voltage")
-        technology = data.get("technology")
+        niveau = 75
+        temperature = 30
+        status = "Test"
+        health = "Good"
+        voltage = 4000
+        technology = "Li-ion"
 
         heure = datetime.now().strftime("%H:%M:%S")
 
