@@ -1,0 +1,6 @@
+# WARNING: Config token app android.sdk is deprecated and ignored, but you set value 33
+# Ensure build layout
+# Check configuration tokens
+# Preparing build
+# Check requirements for android
+# zlib headers must be installed, run: sudo apt-get install zlib1g-dev
