@@ -40,11 +40,17 @@ class BatteryLayout(BoxLayout):
 
 
 class BatteryAIApp(App):
-    def build(self):
-        layout = BatteryLayout()
-        Clock.schedule_interval(layout.update_battery, 5)
-        layout.update_battery()
-        return layout
+def build(self):
+layout = BatteryLayout()
+
+    self.title = "Battery AI"
+
+    layout.ids.level_label.text = "Niveau : Test"
+    layout.ids.temp_label.text = "Température : Test"
+    layout.ids.voltage_label.text = "Voltage : Test"
+    layout.ids.conseil_label.text = "Application Kivy OK"
+
+    return layout
 
 
 if __name__ == "__main__":
