@@ -1,46 +1,51 @@
-from flask import Flask, render_template
-import subprocess
-import json
-from datetime import datetime
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.clock import Clock
 
-app = Flask(__name__)
+from jnius import autoclass
 
-@app.route("/")
-def home():
+PythonActivity = autoclass('org.kivy.android.PythonActivity')
+Context = autoclass('android.content.Context')
+IntentFilter = autoclass('android.content.IntentFilter')
+BatteryManager = autoclass('android.os.BatteryManager')
 
-    try:
-        niveau = 75
-        temperature = 30
-        status = "Test"
-        health = "Good"
-        voltage = 4000
-        technology = "Li-ion"
 
-        heure = datetime.now().strftime("%H:%M:%S")
+class BatteryLayout(BoxLayout):
 
-        if niveau >= 80:
+    def update_battery(self, *args):
+        activity = PythonActivity.mActivity
+        intent = activity.registerReceiver(
+            None,
+            IntentFilter("android.intent.action.BATTERY_CHANGED")
+        )
+
+        level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
+        temp = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0) / 10.0
+        voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0)
+
+        self.ids.level_label.text = f"Niveau : {level}%"
+        self.ids.temp_label.text = f"Température : {temp} °C"
+        self.ids.voltage_label.text = f"Voltage : {voltage} mV"
+
+        if level >= 80:
             conseil = "Batterie excellente"
-        elif niveau >= 50:
+        elif level >= 50:
             conseil = "Batterie normale"
-        elif niveau >= 20:
+        elif level >= 20:
             conseil = "Activer économie batterie"
         else:
             conseil = "Recharge urgente"
 
-        return render_template(
-            "index.html",
-            niveau=niveau,
-            temperature=temperature,
-            status=status,
-            health=health,
-            voltage=voltage,
-            technology=technology,
-            heure=heure,
-            conseil=conseil
-        )
+        self.ids.conseil_label.text = conseil
 
-    except Exception as e:
-        return f"Erreur : {e}"
+
+class BatteryAIApp(App):
+    def build(self):
+        layout = BatteryLayout()
+        Clock.schedule_interval(layout.update_battery, 5)
+        layout.update_battery()
+        return layout
+
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    BatteryAIApp().run()
