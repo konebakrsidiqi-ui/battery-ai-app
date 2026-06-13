@@ -1,1 +1,5 @@
-:::writing{variant="document" id="58247"} .buildozer/ bin/ venv/ pycache/ *.pyc :::
+.buildozer/
+bin/
+venv/
+__pycache__/
+*.pyc
